@@ -11,14 +11,17 @@ module.exports = CachingWriter.extend({
   enforceSingleInputTree: true,
 
   init: function() {
+    this._super.apply(this, arguments);
+
     this.description = 'SourcemapConcat';
-    
+
     if (!this.separator) {
       this.separator = '\n';
     }
     if (!this.outputFile) {
       throw new Error("outputFile is required");
     }
+
   },
 
   updateCache: function(inDir, outDir) {

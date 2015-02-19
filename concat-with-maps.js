@@ -8,6 +8,8 @@ module.exports = CachingWriter.extend({
   enforceSingleInputTree: true,
 
   init: function() {
+    this._super.apply(this, arguments);
+
     if (!this.separator) {
       this.separator = '\n';
     }
