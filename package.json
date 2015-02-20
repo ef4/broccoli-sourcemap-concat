@@ -18,7 +18,7 @@
     "sinon": "^1.12.2"
   },
   "dependencies": {
-    "broccoli-caching-writer": "0.5.5",
+    "broccoli-caching-writer": "ember-cli/broccoli-caching-writer",
     "broccoli-kitchen-sink-helpers": "^0.2.5",
     "broccoli-writer": "^0.1.1",
     "combined-stream": "0.0.7",
