@@ -19,7 +19,7 @@ module.exports = CachingWriter.extend({
       this.separator = '\n';
     }
     if (!this.outputFile) {
-      throw new Error("outputFile is required");
+      throw new Error('outputFile is required');
     }
 
   },
@@ -62,12 +62,14 @@ module.exports = CachingWriter.extend({
       beginSection();
       combined.append(streamFor(this.footer));
     }
+
     if (this.footerFiles) {
       this.footerFiles.forEach(function(ff) {
         beginSection();
         combined.append(fs.createReadStream(path.join(inDir, ff)));
       }.bind(this));
     }
+
     return new RSVP.Promise(function(resolve, reject) {
       var filename = path.join(outDir, this.outputFile);
       mkdirp.sync(path.dirname(filename));

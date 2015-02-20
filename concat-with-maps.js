@@ -51,7 +51,7 @@ module.exports = CachingWriter.extend({
     }
 
     try {
-      this.addFiles(inDir, beginSection);
+      this._addFiles(inDir, beginSection);
     } catch(error) {
       // multiGlob is obtuse.
       if (!error.message.match("did not match any files") || !this.allowNone) {
@@ -72,7 +72,7 @@ module.exports = CachingWriter.extend({
     return this.concat.end();
   },
 
-  addFiles: function(inDir, beginSection) {
+  _addFiles: function(inDir, beginSection) {
     helpers.multiGlob(this.inputFiles, {
       cwd: inDir,
       root: inDir,
