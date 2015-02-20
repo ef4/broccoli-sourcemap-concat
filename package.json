@@ -1,10 +1,11 @@
 {
   "name": "broccoli-sourcemap-concat",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Fast, good-enough concatenation with source maps.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:debug": "mocha debug"
   },
   "repository": "https://github.com/ef4/broccoli-sourcemap-concat",
   "author": "Edward Faulkner <ef@alum.mit.edu>",
@@ -17,13 +18,13 @@
     "sinon": "^1.12.2"
   },
   "dependencies": {
-    "broccoli-caching-writer": "0.5.3",
+    "broccoli-caching-writer": "ember-cli/broccoli-caching-writer",
     "broccoli-kitchen-sink-helpers": "^0.2.5",
     "broccoli-writer": "^0.1.1",
     "combined-stream": "0.0.7",
     "fast-sourcemap-concat": " ^0.2.0",
     "lodash-node": "^2.4.1",
     "mkdirp": "^0.5.0",
-    "rsvp": "^3.0.14"
+    "rsvp": "^3.0.17"
   }
 }

@@ -8,11 +8,13 @@ module.exports = CachingWriter.extend({
   enforceSingleInputTree: true,
 
   init: function() {
+    this._super.apply(this, arguments);
+
     if (!this.separator) {
       this.separator = '\n';
     }
     if (!this.outputFile) {
-      throw new Error("outputFile is required");
+      throw new Error('outputFile is required');
     }
     this.encoderCache = {};
   },
@@ -49,10 +51,10 @@ module.exports = CachingWriter.extend({
     }
 
     try {
-      this.addFiles(inDir, beginSection);
+      this._addFiles(inDir, beginSection);
     } catch(error) {
       // multiGlob is obtuse.
-      if (!error.message.match("did not match any files") || !this.allowNone) {
+      if (!error.message.match('did not match any files') || !this.allowNone) {
         throw error;
       }
     }
@@ -70,7 +72,7 @@ module.exports = CachingWriter.extend({
     return this.concat.end();
   },
 
-  addFiles: function(inDir, beginSection) {
+  _addFiles: function(inDir, beginSection) {
     helpers.multiGlob(this.inputFiles, {
       cwd: inDir,
       root: inDir,

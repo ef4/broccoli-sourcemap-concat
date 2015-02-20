@@ -11,14 +11,17 @@ module.exports = CachingWriter.extend({
   enforceSingleInputTree: true,
 
   init: function() {
+    this._super.apply(this, arguments);
+
     this.description = 'SourcemapConcat';
-    
+
     if (!this.separator) {
       this.separator = '\n';
     }
     if (!this.outputFile) {
-      throw new Error("outputFile is required");
+      throw new Error('outputFile is required');
     }
+
   },
 
   updateCache: function(inDir, outDir) {
@@ -50,7 +53,7 @@ module.exports = CachingWriter.extend({
       this._addFiles(combined, inDir, beginSection);
     } catch(error) {
       // multiGlob is obtuse.
-      if (!error.message.match("did not match any files") || !this.allowNone) {
+      if (!error.message.match('did not match any files') || !this.allowNone) {
         throw error;
       }
     }
@@ -59,12 +62,14 @@ module.exports = CachingWriter.extend({
       beginSection();
       combined.append(streamFor(this.footer));
     }
+
     if (this.footerFiles) {
       this.footerFiles.forEach(function(ff) {
         beginSection();
         combined.append(fs.createReadStream(path.join(inDir, ff)));
       }.bind(this));
     }
+
     return new RSVP.Promise(function(resolve, reject) {
       var filename = path.join(outDir, this.outputFile);
       mkdirp.sync(path.dirname(filename));
