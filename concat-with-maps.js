@@ -4,6 +4,7 @@ var path = require('path');
 var fs = require('fs');
 var ConcatWithSourcemap = require('fast-sourcemap-concat');
 var uniq = require('lodash.uniq');
+var mkdirp = require('mkdirp');
 
 module.exports = ConcatWithMaps;
 ConcatWithMaps.prototype = Object.create(CachingWriter.prototype);
@@ -34,9 +35,12 @@ function ConcatWithMaps(inputNode, options) {
 ConcatWithMaps.prototype.build = function() {
   var separator = this.separator;
   var firstSection = true;
+  var outputFile = path.join(this.outputPath, this.outputFile);
+
+  mkdirp.sync(path.dirname(outputFile));
 
   var concat = this.concat = new ConcatWithSourcemap({
-    outputFile: path.join(this.outputPath, this.outputFile),
+    outputFile: outputFile,
     sourceRoot: this.sourceRoot,
     baseDir: this.inputPaths[0],
     cache: this.encoderCache
@@ -93,6 +97,13 @@ ConcatWithMaps.prototype.addFiles = function(inputPath, beginSection) {
   files.forEach(function(file) {
     beginSection();
 
-    this.concat.addFile(file.replace(this.inputPaths[0] + '/', ''));
+    this.concat.addFile(ensurePosix(file).replace(ensurePosix(this.inputPaths[0]) + '/', ''));
   }.bind(this));
 };
+
+function ensurePosix(filepath) {
+  if (path.sep !== '/') {
+    return filepath.split(path.sep).join('/');
+  }
+  return filepath;
+}
