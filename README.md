@@ -1,3 +1,8 @@
+DEPRECATION WARNING
+-------------------
+
+Active development of this library has moved to [ember-cli/broccoli-concat](https://github.com/ember-cli/broccoli-concat).
+
 Broccoli concatenator that generates & propagates sourcemaps
 -------------------------------------------------
 
