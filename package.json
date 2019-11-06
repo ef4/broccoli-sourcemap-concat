@@ -27,7 +27,7 @@
     "fast-sourcemap-concat": " ^0.2.4",
     "lodash.merge": "^3.3.2",
     "lodash.uniq": "^3.2.2",
-    "minimatch": "^2.0.10",
+    "minimatch": "^3.0.4",
     "mkdirp": "^0.5.1"
   }
 }
